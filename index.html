@@ -1,39 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title></title>
-	<meta charset="utf-8">
-	<script  src="assets/js/practica.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="css/estilos.css"
+	<link rel="stylesheet" href="https://necolas.github.io/normalize.css/3.0.2/normalize.css">
+	<title>Lista de Tareas</title>
 </head>
 <body>
-  <center>
+	<center>
+		<table>
+			<tr>
+				<td align="center"><label>LISTA DE TAREAS</label>
+				<br>
+				<br>
+			<div class="principal">
+				<div class="wrap">
+					<form class="formulario" action="">
+						<input type="text" id="tareaInput" placeholder="Agrega tu tarea" align="center">
+						<input type="button" class="boton" id="btn-agregar" value="Agregar Tarea">
+					</form>
+				</div>
+			</div>
 
-      <TABLE border  width="50%";
-	height= "300px" align="center">
-  	<TR>
-  		<TD height= "50px"><h1 align="center">LISTA DE TAREAS</h1></TD>
-  	</TR>
-  	<TR>
-  		<TD align="center" ><center>
+			<div class="tareas">
+				<div class="wrap">
+					<ul class="lista" id="lista" aling="center">
+						<li><a href="#">1 Lorem ipsum dolor sit amet.</a></li>
+						<li><a href="#">2 Lorem ipsum dolor sit amet.</a></li>
+						<li><a href="#">3 Lorem ipsum dolor sit amet.</a></li>
+					</ul>
+				</div>
+			</div>
+			<script src="assets/js/practica.js"></script>
 
-  <div class="container" align="center">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="todolist">
-
-                <input type="text" id="todo" class="form-control" placeholder="Añadir tarea"><br>
-                <a href="" id="add" class="btn btn-success" >Añadir tarea</a>
-                <hr>
-                <ul id="todoList" class="list-unstyled" >
-
-            	</ul>
-            </div>
-        </div>
-    </div>
-</div>
-
-</center>
-
-
+				</td>
+			</tr>
+		</table>
+		</center>
 </body>
 </html>

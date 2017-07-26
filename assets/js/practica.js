@@ -1,136 +1,59 @@
-/*[
-  {
-    "userId": 1,
-    "id": 1,
-    "title": "delectus aut autem",
-    "completed": false
-  },
-  {
-    "userId": 1,
-    "id": 2,
-    "title": "quis ut nam facilis et officia qui",
-    "completed": false
-  },
-  {
-    "userId": 1,
-    "id": 3,
-    "title": "fugiat veniam minus",
-    "completed": false
-  },
-  {
-    "userId": 1,
-    "id": 4,
-    "title": "et porro tempora",
-    "completed": true
-  },
-  {
-    "userId": 1,
-    "id": 5,
-    "title": "laboriosam mollitia et enim quasi adipisci quia provident illum",
-    "completed": false
-  },
-  {
-    "userId": 1,
-    "id": 6,
-    "title": "qui ullam ratione quibusdam voluptatem quia omnis",
-    "completed": false
-  },
-  {
-    "userId": 1,
-    "id": 7,
-    "title": "illo expedita consequatur quia in",
-    "completed": false
-  },
-  {
-    "userId": 1,
-    "id": 8,
-    "title": "quo adipisci enim quam ut ab",
-    "completed": true
-  },
-  {
-    "userId": 1,
-    "id": 9,
-    "title": "molestiae perspiciatis ipsa",
-    "completed": false
-  },
-  {
-    "userId": 1,
-    "id": 10,
-    "title": "illo est ratione doloremque quia maiores aut",
-    "completed": true
-  }*/
+(function(){
+	// Variables
+ var lista = document.getElementById("lista"),
+		tareaInput = document.getElementById("tareaInput"),
+		btnNuevaTarea = document.getElementById("btn-agregar");
+    
+	// Funciones
+	var agregarTarea = function(){
+		var tarea = tareaInput.value,
+			nuevaTarea = document.createElement("li"),
+			enlace = document.createElement("a"),
+			contenido = document.createTextNode(tarea);
 
+		if (tarea === "") {
+			tareaInput.setAttribute("placeholder", "Agrega una tarea valida");
+			tareaInput.className = "error";
+			return false;
+		}
 
-//abajo aparte
+		// Agregamos el contenido al enlace
+		enlace.appendChild(contenido);
+		// Le establecemos un atributo href
+		enlace.setAttribute("href", "#");
+		// Agrergamos el enlace (a) a la nueva tarea (li)
+		nuevaTarea.appendChild(enlace);
+		// Agregamos la nueva tarea a la lista
+		lista.appendChild(nuevaTarea);
 
+		tareaInput.value = "";
 
-window.addEventListener("load", init);
+		for (var i = 0; i <= lista.children.length -1; i++) {
+			lista.children[i].addEventListener("click", function(){
+				this.parentNode.removeChild(this);
+			});
+		}
 
-var todos = [];
+	};
+	var comprobarInput = function(){
+		tareaInput.className = "";
+		teareaInput.setAttribute("placeholder", "Agrega tu tarea");
+	};
 
-function init()
-{
-var add = document.querySelector("#add");
-add.addEventListener("click", addTodo);
-}
+	var eleminarTarea = function(){
+		this.parentNode.removeChild(this);
+	};
 
-function addTodo(event)
-{
-//prevenimos el evento del enlace
-event.preventDefault();
-//comprobamos que tenga texto
-if(document.querySelector("#todo").value === "") return;
+	// Eventos
 
-//creamos el objeto con la información del li
-var li =
-{
-  index: todos.length + 1,
-  value: document.querySelector("#todo").value
-};
-todos.push(li);
-displayTodos(li);
-}
+	// Agregar Tarea
+	btnNuevaTarea.addEventListener("click", agregarTarea);
 
-function displayTodos(li)
-{
-//creamos el elemento li
-  var node = document.createElement("li");
-  node.classList.add("col-md-12");
-  node.id = "todo"+li.index;
+	// Comprobar Input
+	tareaInput.addEventListener("click", comprobarInput);
 
-  //creamos el contenido del elementi li
-var textnode = document.createTextNode(li.value);
-node.appendChild(textnode);
-document.querySelector("#todoList").appendChild(node);
-document.querySelector("#todo").value = "";
-
-//añadimos el botón
-var deleteButton = createButton(li);
-  node.appendChild(deleteButton);
-}
-
-function createButton(li)
-{
-//creamos un input
-var todo = document.createElement("input");
-//de tipo button
-  todo.type = "button";
-  //añadimos un margen
-  todo.style.marginTop = "12px";
-  //flotamos a la derecha
-  todo.style.float = "right";
-  //el texto del input
-  todo.value = "Eliminar";
-  //añadimos un margen
-  todo.style.marginLeft = "15px";
-  //añadimos varias clases
-  todo.classList.add("removeTodo", "btn", "btn-danger");
-  //añadimos el evento click para que sea eliminado
-  todo.onclick = function()
-  {
-      var toDelete = document.querySelector('#todo'+li.index);
-  toDelete.parentNode.removeChild(toDelete);
-  };
-  //devolvemos el nuevo elemento
-  return todo;
-}
+	// Borrando Elementos de la lista
+	for (var i = 0; i <= lista.children.length -1; i++) {
+		lista.children[i].addEventListener( "click",eleminarTarea);
+	}
+}());
